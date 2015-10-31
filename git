@@ -1,0 +1,21 @@
+一.远程仓库相关命令
+1git clone git://github.com/simondchen/c.git tt or git clone https://github.com/simondchen/c.git t //检出仓库
+2.git remote -v //查看远程仓库
+3.git remote add [name] [url] -- git remote add origin https://github.com/simondchen/c.git //添加远程仓库
+4.git remote rm [name] -- git remote rm origin //删除远程仓库
+5.git remote set-url --push [name] [newUrl] --git remote set-url --push origin https://github.com/simondchen/c.git //修改远程仓库
+6.git pull [remoteName] [localBranchName] --git pull origin master //拉取远程仓库
+7.git push [remoteName] [localBranchName] --git push origin master //推送远程仓库
+8.git push origin test:master //提交本地分支test作为远程的master分支
+9.git push origin test:test  //提交本地分支test作为远程的test分支
+二.分支(branch)操作相关命令
+1.git branch //查看本地分支
+2.git branch -r //查看远程分支
+3.git branch [name] //创建本地分支，创建后不会自动切换到当前分支
+4.git checkout [name] //切换分支
+5.git branch -d [name] //删除分支,-d只能删除已经参与了合并的分支，-D强制删除一个分支
+6.git merge [name] //合并分支，将名称为[name]的分支与当前分支合并
+7.git push origin [name] 创建远程分支
+8.git push origin :heads/[name] or git push origin :[name] //删除远程分支
+三.git管理文件状态
+1.git rm --cached -r 文件/目录名 取消对文件或目录的追踪,其中--cached保留本地文件.

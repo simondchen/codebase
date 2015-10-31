@@ -1,0 +1,5 @@
+1.使用libpcap时要注意指定动态链接库 gcc test.c -lpcap
+2.注意运行程序可能需要root权限
+3.wlan src 00:1e:65:d1:16:fa and wlan dst c0:cb:38:87:f9:bb
+4.timeval中tv_usec不会超过million，所以用%06ld表示即可
+5.sudo apt-get install libpcap-dev,注意不用root用户时可以获取提示

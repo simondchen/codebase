@@ -1,0 +1,1 @@
+cmd_/home/simon/test/c/kernel_coding/window/window.ko := ld -r -m elf_x86_64 -T /home/simon/Linux_kernel/linux-3.14.54/scripts/module-common.lds --build-id  -o /home/simon/test/c/kernel_coding/window/window.ko /home/simon/test/c/kernel_coding/window/window.o /home/simon/test/c/kernel_coding/window/window.mod.o

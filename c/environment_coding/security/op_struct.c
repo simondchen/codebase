@@ -1,0 +1,2 @@
+void setflag(struct hide){
+}

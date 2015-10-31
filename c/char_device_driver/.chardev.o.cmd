@@ -1,0 +1,1 @@
+cmd_/home/simon/test/c/char_device_driver/chardev.o := ld -m elf_x86_64   -r -o /home/simon/test/c/char_device_driver/chardev.o /home/simon/test/c/char_device_driver/function.o /home/simon/test/c/char_device_driver/memdev.o 

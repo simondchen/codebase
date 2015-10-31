@@ -1,0 +1,1 @@
+cmd_/home/simon/test/c/char_device_driver/chardev.ko := ld -r -m elf_x86_64 -T /home/simon/Linux_kernel/linux-3.14.54/scripts/module-common.lds --build-id  -o /home/simon/test/c/char_device_driver/chardev.ko /home/simon/test/c/char_device_driver/chardev.o /home/simon/test/c/char_device_driver/chardev.mod.o

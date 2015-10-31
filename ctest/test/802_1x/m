@@ -1,0 +1,9 @@
+CC=gcc
+start:start.o packet.o 
+	$(CC) -o start start.o packet.o
+start.o:start.c packet.h
+	$(CC) -o start.o start.c
+packet.o:packet.c packet.h
+	$(CC) -o packet.o packet.c
+clean:
+	rm -f *.o start

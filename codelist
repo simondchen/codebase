@@ -1,0 +1,9 @@
+一个进程间通信的轻量级封装,一个后台服务进程,其他进程可以向该进程注册自己,告诉它自己感兴趣的信息,该服务进程负责管理所有连接的进程,并根据规则分发消息
+socket通信:a.UNIX域的socket通信 b.fdset,select的socket通信 c.epoll的socket通信练习
+netlink内核态与用户态通信
+编码方式的练习,读取编码方式,--finput-file,-fexec-charset等选项的设置
+写一个扫描essid,并选择合适的连接的脚本
+window内核数据窗口的继续完善:查看进程的内存使用状况
+一个实际设备的驱动,如游戏杆
+printf的封装,实现高亮输出等:如print_error,将输出打印成红色
+继续研究如何将选中的字符拷贝到clipboard,并实现yank程序
