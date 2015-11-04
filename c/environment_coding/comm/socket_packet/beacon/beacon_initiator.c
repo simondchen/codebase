@@ -5,7 +5,7 @@
  *try your best,and enjoy coding
  *
  */
-//#define _BSD_SOURCE
+#define _BSD_SOURCE
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -30,6 +30,10 @@
 #define BSSID_POS 42
 #define SEQ_POS 48
 #define RADIOTAP_LEN 26
+/*
+ * 这里不同的网卡rss的位置可能不同,所以还是要通过present_flags
+ * 计算出rss的位置,当然现在为了方便可以先写固定值
+ */
 #define RSSI_POS 22
 
 typedef unsigned char u_char;
@@ -39,7 +43,7 @@ int packet_socket;
 int recv_socket;
 struct sockaddr_ll sa_ll;
 struct bpf_program fp;
-uint16_t seq=1;
+uint16_t seq=0;
 
 /*
  *buf[22]是RSSI字段
@@ -77,9 +81,9 @@ unsigned char buf[]={
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xdd, 0x06, 0x00, 0xe0, 0x4c, 0x02, 0x01, 0x60
 };
 
-int send_beacon(void){
+int send_beacon(int tseq){
     //修改seq字段,seq计算方法:低4位不使用,即seq左移4位得到
-   uint16_t temp_seq = seq << 4;
+   uint16_t temp_seq = tseq << 4;
    ssize_t len;
    buf[SEQ_POS] = (uint8_t)(temp_seq & 0xff);
    buf[SEQ_POS+1] = (uint8_t)((temp_seq >> 8) & 0xff);
@@ -124,6 +128,7 @@ int init_libpcap(void)
      *获取socket描述符
      */
     recv_socket=pcap_fileno(handle);
+    printf("recv_socket:%d\n",recv_socket);
     /*
      * 设置为nonblock模式,注意nonblock模式下只能使用pcap_dispatch,如果没有数据，
      * pcap_dispatch立即返回0
@@ -174,6 +179,12 @@ void stop_capture(int sig)
     exit(0);
 }
 
+void break_loop(int sig){
+    //timeout,关闭pcap_breakloop
+    pcap_breakloop(handle);
+    printf("timeout,break paploop\n");
+}
+
 /*
  * 设计两种包交互协议:
  * 1.不重传,每隔50ms发送包,若存在一方seq丢失则该seq的包不使用
@@ -182,19 +193,18 @@ void stop_capture(int sig)
  */
 void packet_process(u_char *user,const struct pcap_pkthdr *h,const u_char *bytes)
 {
-    //如果包处理过程占用过多时间,会影响报的接收,但如果是关心的包按照交互协议,则不必担心???处理时间长,缓冲区溢出!!!这里还不是很清楚,要留意一下
-    //printf("packets coming:%d\n",h->caplen);
-    //解析包
-    //不要使用int,否则无法表示有符号,转化成有符号数
+    //记录rss和seq
     int8_t rssi=bytes[22];
     uint16_t temp_seq=*((uint16_t *)(bytes+SEQ_POS));
     temp_seq >>= 4;
-    printf("temp_seq:%d,rssi:%d\n",temp_seq,rssi);
+    printf("seq:%d,rssi:%d\n",temp_seq,rssi);
     //休眠50ms,20packets/s
     usleep(50000);
     //发送下一个数据包
     seq++;
-    send_beacon();
+    send_beacon(seq);
+    //重置定时器
+    alarm(2);
 }
 
 int main(void)
@@ -202,62 +212,29 @@ int main(void)
     /*1.初始化AF_PACKET套接字packet_socket用于发送链路层数据包*/
     if((packet_socket=init_tranmit_socket())<0)
         return -1;
-    //设置Ctrl+C的处理函数
+    //设置信号处理函数
     signal(SIGINT,stop_capture); 
+    signal(SIGALRM,break_loop);
     /*2.初始化libpcap用于接收和过滤数据包,因为libpcap可以在内核中进行过滤,提高效率,抽时间研究一下是怎么实现的*/
     if(init_libpcap()<0){
         goto fail;
     }
     //test
-    int i=1;
+    /*int i=1;
     while(1){
         printf("send beacon:%d\n",i++);
         send_beacon();
         seq++;
         usleep(1000000);
-    }
-    /*3.作为发起者,先发送第一个包开始交互流程*/
-    if(send_beacon()<0){
-        goto fail;
-    }
-    /*4.使用pcap_dispatch非阻塞模式下抓包,结合select的方式应该更好,main loop*/
-    struct timeval tv;
-    fd_set fdset;
-    int ret;
+    }*/
+    /*3.使用pcap_loop结合信号防止丢包后的一直阻塞*/
     while(1){ 
-        //设置超时时间为1s,select使用的是jiffies来实现定时,所以其精度(resolution)受限于jiffies
-        tv.tv_sec = 1;
-        tv.tv_usec = 0;
-        FD_ZERO(&fdset);
-        FD_SET(recv_socket,&fdset);
-        ret=select(recv_socket+1,&fdset,NULL,NULL,&tv);
-        if(ret<0){
-            perror("select error\n");
-            //这里先这么处理，如果真的出现这种情况再修改
-            goto fail;
-        }else if(ret==0){
-            /*
-             * 超时,不重传,seq加1,发送下一个包
-             * 测试发现丢包的发生的概率还是不低的:initiator --> responder  responder --> initiator的过程中
-             * 都有可能丢包,这里将超时时间设置为1s是不是太长了
-             */
-            printf("timeout and receive no response,go on transmitting the next packet without retransmittion\n");
-            seq++;               
-            if(send_beacon()<0){
-                //发送包失败,一般不会发生把,处理方法先是终止程序,如果出现了该错误在处理
-                goto fail;
-            }
-        }else{
-            /*
-             * 有数据,这里调用pcap_dispatch,注意pcap_loop和pcap_next均不可
-             * 用于阻塞模式,但是对pcap_dispatch还不是很熟悉,需要测试,帮助
-             * 文档中说的the end of the current bufferful of packet is reached
-             * 是什么意思
-             */
-            //这里可能会出问题
-            printf("call pcap_dispatch\n");
-            pcap_dispatch(handle,1,packet_process,NULL);
-        }
+        seq++;        
+        send_beacon(seq);
+        //设置定时器,超时时间为2秒,防止pcap_loop一直阻塞
+        alarm(2);
+        //-1就是不设置抓包数,其退出不收抓包数影响
+        pcap_loop(handle,-1,packet_process,NULL);
     }
     return 0;
 fail:
