@@ -27,6 +27,7 @@
 #include <stdint.h>
 #include <signal.h>
 #include <sys/select.h>
+#include <time.h>
 
 //这里pos都是从零开始!!!
 #define DST_POS 30
@@ -43,6 +44,7 @@ int packet_socket;
 int recv_socket;
 struct sockaddr_ll sa_ll;
 struct bpf_program fp;
+FILE *file;
 //uint16_t seq=1;
 
 /*
@@ -78,11 +80,6 @@ unsigned char buf[]={
     0x34, 0x01, 0x05, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xdd, 0x06, 0x00, 0xe0, 0x4c, 0x02, 0x01, 0x60
 };
-
-void alarm_handler(int sig){
-    pcap_breakloop(handle);
-    printf("timeout,break pcap_loop\n");
-}
 
 int send_beacon(uint16_t seq){
     //修改seq字段,seq计算方法:低4位不使用,即seq左移4位得到
@@ -121,6 +118,10 @@ int init_tranmit_socket(void)
 
 int init_libpcap(void)
 {
+    /*
+     *TODO
+     *close the buffer for socket,is it necessary?
+     */
     char errbuf[1024]={'\0',};
     handle=pcap_open_live(iface,BUFSIZ,1,0,errbuf);
     if(handle==NULL){
@@ -164,6 +165,7 @@ void stop_capture(int sig)
     pcap_freecode(&fp);
     close(packet_socket);
     pcap_close(handle);
+    fclose(file);
     exit(0);
 }
 
@@ -175,17 +177,31 @@ void stop_capture(int sig)
  */
 void packet_process(u_char *user,const struct pcap_pkthdr *h,const u_char *bytes)
 {
-    int8_t rssi=bytes[22];
+    int8_t rssi=bytes[RSSI_POS];
     uint16_t seq=*((uint16_t *)(bytes+SEQ_POS));
     seq >>= 4;
     send_beacon(seq);
     printf("seq:%d,rssi:%d\n",seq,rssi);
-    //重置定时器
-    alarm(5);
+    //记录到文件中
+    fprintf(file,"%d:%d\n",seq,rssi);
 }
 
 int main(void)
 {
+    //打开样本记录文件
+    time_t t;
+    struct tm *tm;
+    time(&t);
+    tm=localtime(&t);
+    char time_buf[20];
+    sprintf(time_buf,"%d-%d %d:%d",tm->tm_mon,tm->tm_mday,tm->tm_hour,tm->tm_min);
+    char path[40]="sample/seq_";
+    strcat(path,time_buf);
+    file=fopen(path,"w+");
+    if(file==NULL){
+        perror("open sample file error\n");
+        return -1;
+    }
     /*1.初始化AF_PACKET套接字packet_socket用于发送链路层数据包*/
     if((packet_socket=init_tranmit_socket())<0)
         return -1;
@@ -196,15 +212,9 @@ int main(void)
         goto fail;
     }
     
-    signal(SIGALRM,alarm_handler);
-
-
-    //将pcap_loop放于循环中
-    while(1){
-        int num=0;
-        alarm(5);
-        num=pcap_loop(handle,-1,packet_process,NULL);
-        printf("loop ret:%d\n",num);
+    if(pcap_loop(handle,-1,packet_process,NULL)<0){
+        printf("pcap_loop error\n");
+        goto fail;
     }
 
     return 0;

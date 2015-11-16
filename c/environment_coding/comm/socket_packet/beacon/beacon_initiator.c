@@ -5,7 +5,7 @@
  *try your best,and enjoy coding
  *
  */
-#define _BSD_SOURCE
+//#define _BSD_SOURCE
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
@@ -23,6 +23,22 @@
 #include <stdint.h>
 #include <signal.h>
 #include <sys/select.h>
+#include <time.h>
+#include <sys/ioctl.h>
+#include <sys/time.h>
+
+/*
+ *TODO
+ *关闭接收端beacon_responser的socket的buffer
+ *关于buffer的思考:首先要确信的是write和read是non-buffer的,所以这两个系统调用只要socket的buffer中有数据就会
+ *去取.而socket也是存在buffer的.所以如果使用read和write,一般情况下缓存对时间的影响不是很严重
+ *使用libpcap时,libpcap也是存在缓存的,pcap_loop去读数据,使用了BPF时,对于BSD系(包括OS X),可以使用ioctl(BIOCIMMEDIATE)
+ *来关闭bfp的buffer
+ *设置buffer大小:
+ *setsockopt(sock, SOL_SOCKET, SO_SNDBUF, (int[]){YOUR_BUF_LIMIT}, sizeof(int));
+ *setsockopt(sock, SOL_SOCKET, SO_RCVBUF, (int[]){YOUR_BUF_LIMIT}, sizeof(int));
+ *
+ */
 
 //这里pos都是从零开始!!!
 #define DST_POS 30
@@ -37,6 +53,7 @@
 #define RSSI_POS 22
 
 typedef unsigned char u_char;
+typedef struct timeval tarray[1024];
 pcap_t *handle;
 char *iface = "mon0";
 int packet_socket;
@@ -44,7 +61,12 @@ int recv_socket;
 struct sockaddr_ll sa_ll;
 struct bpf_program fp;
 uint16_t seq=0;
-
+FILE *file;
+//两个全局数组,记录发送和接收的时间戳
+tarray s_tarray;
+tarray r_tarray;
+struct timeval sdtime;
+struct timeval rtime;
 /*
  *buf[22]是RSSI字段
  *buf[30:35]是Receiver/Destination address字段
@@ -88,6 +110,10 @@ int send_beacon(int tseq){
    buf[SEQ_POS] = (uint8_t)(temp_seq & 0xff);
    buf[SEQ_POS+1] = (uint8_t)((temp_seq >> 8) & 0xff);
    // *((uint16_t *)buf) = temp_seq; //应该是等价的
+   //记录发送时间
+   if(gettimeofday(&sdtime,NULL)<0){
+       perror("gettimeofday send time error\n");
+   }
    len=sendto(packet_socket,buf,sizeof(buf),0,(const struct sockaddr *)&sa_ll,sizeof(sa_ll));  
     if(len<0){
         perror("send_beacon:sendto error\n");
@@ -135,10 +161,11 @@ int init_libpcap(void)
      * 注意handle->fd就是socket描述符,也可以使用fcntl(handle->fd,F_SETFL,flags)
      * 设置非阻塞模式
      */
-    if(pcap_setnonblock(handle,1,errbuf)<0){
-        pcap_perror(handle,"pcap_setnonblock error:");
-        return -1;
-    }
+    //这里没啥用
+    //if(pcap_setnonblock(handle,1,errbuf)<0){
+    //    pcap_perror(handle,"pcap_setnonblock error:");
+    //    return -1;
+    //}
     //编译和设置过滤规则
     //从文件中读取过滤规则
     FILE *rule=NULL; 
@@ -166,6 +193,12 @@ int init_libpcap(void)
         return -1;
     }
     pcap_freecode(&fp);
+    //使用BPF时,要enable "immediate mode"防止系统buffer for us
+    //好像只有BSD系列的支持
+    //on Linux, this is currently not necessary - what buffering is done
+    //doesn't have a timeout for the delivery of packets
+    //unsigned int on=1;
+    //ioctl(recv_socket,BIOCIMMEDIATE,&on);
     return 0;
 }
 
@@ -176,6 +209,7 @@ void stop_capture(int sig)
     pcap_freecode(&fp);
     close(packet_socket);
     pcap_close(handle);
+    fclose(file);
     exit(0);
 }
 
@@ -183,6 +217,20 @@ void break_loop(int sig){
     //timeout,关闭pcap_breakloop
     pcap_breakloop(handle);
     printf("timeout,break paploop\n");
+}
+
+//a-b,假设a比b靠后,c中结构体的赋值是语言支持的,而数组的直接赋值不支持
+//数组不支持直接赋值是因为数组是一个地址,赋值时长度不容易控制
+struct timeval timesub(struct timeval a,struct timeval b){
+    struct timeval ret;
+    if(a.tv_usec<b.tv_usec){
+        ret.tv_usec=a.tv_usec+1000000-b.tv_usec;
+        ret.tv_sec=a.tv_sec-1-b.tv_sec;
+    }else{
+        ret.tv_sec=a.tv_sec-b.tv_sec;
+        ret.tv_usec=a.tv_usec-b.tv_usec;
+    }
+    return ret;
 }
 
 /*
@@ -193,12 +241,30 @@ void break_loop(int sig){
  */
 void packet_process(u_char *user,const struct pcap_pkthdr *h,const u_char *bytes)
 {
+    /*
+     *TODO 
+     *
+     *
+     */
+    //获取当前时间rtime,并与sdtime比较,以记录从发包到收包所消耗的时间
+    if(gettimeofday(&rtime,NULL)<0){
+        perror("gettimeofday error:rtime\n");
+    }
     //记录rss和seq
     int8_t rssi=bytes[22];
     uint16_t temp_seq=*((uint16_t *)(bytes+SEQ_POS));
     temp_seq >>= 4;
     printf("seq:%d,rssi:%d\n",temp_seq,rssi);
+    //显示时间
+    struct timeval tmp=timesub(rtime,sdtime);
+    printf("%ld:%06ld\n",tmp.tv_sec,tmp.tv_usec);
+    //记录到文件中
+    int len=fprintf(file,"%d:%d\n",temp_seq,rssi);
+    if(len<0){
+        perror("fprintf error\n");
+    }
     //休眠50ms,20packets/s
+    //发包的时间间隔也有要考虑,多改改试试
     usleep(50000);
     //发送下一个数据包
     seq++;
@@ -209,6 +275,23 @@ void packet_process(u_char *user,const struct pcap_pkthdr *h,const u_char *bytes
 
 int main(void)
 {
+    //打开样本记录文件,以时间为文件命名
+    time_t t;
+    time(&t);
+    struct tm *tm=localtime(&t);
+    char time_buf[20];
+    char path[40]="sample/seq_";
+    sprintf(time_buf,"%d-%d %d:%d",tm->tm_mon,tm->tm_mday,tm->tm_hour,tm->tm_min);
+    strcat(path,time_buf);
+    printf("%s\n",path);
+    file=fopen(path,"w+");
+    if(file==NULL){
+        perror("open file error\n");
+        return -1;
+    }
+    //初始化sdtime,rtime
+    memset(&sdtime,0,sizeof(sdtime));
+    memset(&rtime,0,sizeof(rtime));
     /*1.初始化AF_PACKET套接字packet_socket用于发送链路层数据包*/
     if((packet_socket=init_tranmit_socket())<0)
         return -1;

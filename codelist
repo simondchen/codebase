@@ -1,3 +1,5 @@
+研究一下shell需要从标准输入获取数据时,如sudo,怎么从文件或者从变量中获取
+写个计划任务:a.定期清理磁盘:Download,/var/apt,下载,系统日志等 b.定期备份
 一个进程间通信的轻量级封装,一个后台服务进程,其他进程可以向该进程注册自己,告诉它自己感兴趣的信息,该服务进程负责管理所有连接的进程,并根据规则分发消息
 socket通信:a.UNIX域的socket通信 b.fdset,select的socket通信 c.epoll的socket通信练习
 netlink内核态与用户态通信
