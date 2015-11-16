@@ -1,0 +1,66 @@
+package com.simon.bulls_and_cows;
+
+import java.util.*;
+
+public class BULLS_AND_COWS {
+
+	
+	public String getHint(String secret, String guess) {
+        
+		int bulls=0;
+		int cows=0;
+		
+		List<Integer> indexs=new ArrayList<Integer>();
+		//处理bulls
+		StringBuilder ssb=new StringBuilder(secret);
+		StringBuilder gsb=new StringBuilder(guess);
+		for(int i=0;i<ssb.length();i++){
+			if(ssb.charAt(i)==guess.charAt(i)){
+				//直接这样该会出错,因为一边才操作,一边在修改!!!可以不用去,记下index即可
+//				ssb.deleteCharAt(i);
+//				gsb.deleteCharAt(i);
+				indexs.add(i);
+				bulls++;
+			}
+		}
+		
+		//在StringBuilder中去掉相应位
+		int delnum=0;
+		for(int i:indexs){
+			ssb.deleteCharAt(i-delnum);
+			gsb.deleteCharAt(i-delnum);
+			delnum++;
+		}
+		
+		//处理cows
+		//定义两个大小为10的数组,相当于全域hash
+		int[] sarray=new int[10];
+		int[] garray=new int[10];
+
+		for(int i=0;i<ssb.length();i++){
+			sarray[ssb.charAt(i)-48]++;
+			garray[ssb.charAt(i)-48]++;
+		}
+		
+		for(int i=0;i<sarray.length;i++){
+			cows+=(sarray[i]>garray[i])?garray[i]:sarray[i];
+		}
+		
+		StringBuilder ret=new StringBuilder("");
+		ret.append(bulls);
+		ret.append("A");
+		ret.append(cows);
+		ret.append("B");
+		
+		
+		return ret.toString();
+    }
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		BULLS_AND_COWS bc=new BULLS_AND_COWS();
+		bc.getHint("1807","7810");
+	}
+
+}

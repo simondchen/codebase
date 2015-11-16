@@ -1,0 +1,47 @@
+package com.simon.bulls_and_cows;
+
+import java.util.*;
+
+public class BULLS_AND_COWS {
+
+	
+	public String getHint(String secret, String guess) {
+        
+		int bulls=0;
+		
+		List<Integer> indexs=new ArrayList<Integer>();
+		//处理bulls
+		StringBuilder ssb=new StringBuilder(secret);
+		StringBuilder gsb=new StringBuilder(guess);
+		for(int i=0;i<ssb.length();i++){
+			if(ssb.charAt(i)==guess.charAt(i)){
+				//直接这样该会出错,因为一边才操作,一边在修改!!!可以不用去,记下index即可
+//				ssb.deleteCharAt(i);
+//				gsb.deleteCharAt(i);
+				indexs.add(i);
+				bulls++;
+			}
+		}
+		
+		//处理cows
+		//定义两个大小为10的数组
+		int []sarray={0};
+		
+		for(int i=0;i<sarray.length;i++){
+			if(sarray[i]==garray[i]){
+				
+			}
+		}
+		
+		
+		return null;
+    }
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		char a='0';
+		System.out.println((int)a-48);
+	}
+
+}

@@ -1,0 +1,7 @@
+今天在ubuntu下装了Latex,遇到的主要问题是安装中文字体
+http://www.cnblogs.com/bamboo-talking/archive/2013/01/07/2848914.html
+要安装xelatex编译器:sudo apt-get install texlive-xetex
+安装cjk的macro package:sudo apt-get install latex-cjk-chinese cjk-later(更新用的) 或者 sudo apt-get install latex-cjk-common
+安装中文字体(查看系统中已安装的字体:fc-list)sudo apt-get install xfonts-wqy ttf-wqy-micohei tty-wqy-zenhei
+编译xelatex filename.tex
+模板参考:filename.tex

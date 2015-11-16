@@ -1,0 +1,40 @@
+package com.simon.LIS_300;
+
+import java.util.*;
+
+public class LIS {
+
+	
+	public int lengthOfLIS(int[] nums) {
+        //使用贪心算法,在所有可能的情况种选择最后一位最小的
+		//LIS初始化为数组的第一个元素,然后从第二位开始循环
+		/*
+		 *循环不变式为:list.get(i)为序列长为i的所有LIS中最后一位最小的
+		 *关键在于循环不变式的维护:最后一位m,和min(maxlen),min(maxlen-1),...min(1)
+		 *的大小关系,找到第一个min(len)>m,增加其长度,然后替换min(len+1)的那个(如没有新加)                                                                                                                        
+		 */
+		//使用ArrayList结构维护每个长度的序列的min,即min(len)
+		List<Integer> list=new ArrayList<Integer>();
+		//初始化,先将第一个放进去,以符合循环不变式
+		list.add(1,nums[0]);
+		//当前最大长度
+		int maxlen=1;
+		for(int i=0;i<nums.length;i++){
+			//查看每个长度的min,即min(len)
+			int newnum=nums[i];
+			for(int j=maxlen;j>0;j--){
+				
+			}
+		}
+		return 0;
+    }
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
