@@ -1,0 +1,21 @@
+package com.simon.range_sum_query;
+
+public class RANGE_SUM_QUERY {
+
+	
+	public RANGE_SUM_QUERY(int[] nums) {
+        
+    }
+
+    public int sumRange(int i, int j) {
+        return 0;
+    }
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

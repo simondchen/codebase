@@ -1,0 +1,66 @@
+package com.simon.list_merge;
+
+public class ListMerge {
+
+
+	class ListNode {
+		int val;
+		ListNode next;
+		ListNode(int x) { val = x; }
+	}
+	
+	
+	public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        
+		//初始化
+		ListNode cmp=l1,tmp=l2;
+		ListNode s=new ListNode(0);
+		s.next=tmp;
+		while(true){
+			while(cmp.val>tmp.val && tmp!=null){
+				s=tmp;
+				tmp=tmp.next;
+			}
+			if(tmp==null){
+				s.next=cmp;
+				break;
+			}
+			s.next=cmp;
+			cmp=tmp;
+			tmp=s.next.next;
+			if(s==null){
+				ListNode t=cmp;
+				cmp.next=tmp;
+				cmp=tmp;
+				tmp=t.next;
+				
+				//
+				break;
+			}else{
+				//s!=null,此时s->next=tmp
+				s.next=cmp;
+				if(cmp.next==null){
+					//结束循环
+					cmp.next=tmp;
+					break;
+				}else{
+					cmp=tmp;
+					tmp=s.next.next;
+				}
+				
+			}
+			
+			
+		}
+		
+		
+		return null;
+    }
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

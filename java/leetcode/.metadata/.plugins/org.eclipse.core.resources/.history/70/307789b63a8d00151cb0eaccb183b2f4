@@ -1,0 +1,24 @@
+package com.simon.range_sum_query;
+
+public class RANGE_SUM_QUERY {
+
+	public int[] nums;
+	
+	public RANGE_SUM_QUERY(int[] nums) {
+        //将nums的长度补全成2的平方数,方便操作
+		int len=nums.length;
+		this.nums=new int[len];
+    }
+
+    public int sumRange(int i, int j) {
+        return 0;
+    }
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

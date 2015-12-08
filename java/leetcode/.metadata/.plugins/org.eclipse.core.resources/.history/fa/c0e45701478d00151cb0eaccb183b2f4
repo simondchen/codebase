@@ -1,0 +1,75 @@
+package com.simon.range_sum_query;
+
+import java.math.BigInteger;
+import java.util.*;
+
+public class RANGE_SUM_QUERY {
+
+	public Map<Integer,ArrayList<Integer>> list=new HashMap<Integer,ArrayList<Integer>>();
+	
+	public int log_len(int len){
+		int i=0;
+		while(Math.pow(2,i)<len){
+			i++;
+		}
+		return i;
+	}
+	
+	public RANGE_SUM_QUERY(int[] nums) {
+        //将nums的长度补全成2的平方数,方便操作
+		int i;
+		int len=nums.length;
+		int loglen=log_len(len);
+		int newlen=(int)Math.pow(2,loglen);
+		//将nums添加到list中去
+		ArrayList<Integer> l=new ArrayList<>();
+		for(i=0;i<len;i++){
+			l.add(nums[i]);
+		}
+		for(i=len;i<newlen;i++){
+			l.add(0);
+		}
+		list.put(0,l);
+		//初始化,计算2^0,2^1,2^2,...2^newlen的长度的部分和
+		for(i=1;i<=loglen;i++){
+			ArrayList<Integer> locallist=list.get(i-1);
+			ArrayList<Integer> newlist=new ArrayList<Integer>();
+			for(int j=0;j<locallist.size();j+=2){
+				newlist.add(locallist.get(j)+locallist.get(j+1));
+			}
+			list.put(i,newlist);
+		}
+    }
+
+	//找到一个数,可以整除len
+	public int binary_search(int i,int j,int len){
+		return 0;
+	}
+	
+    public int sumRange(int i, int j) {
+    	//使用之前计算出来的部分和计算,而不直接计算i到j的部分和
+    	int len=j-i+1;
+    	int loglen=log_len(len);
+    	//1.若i和j是同时对齐的话,即2^0-1,2^1-1...,直接计算
+    	//2.如果i是对齐的话,则直接分块计算
+    	//3.如果j是对齐的话,直接分块计算
+    	
+    	//二分查找出对齐的,即可以整除2^(len-1)
+    	int alignlen=(int)Math.pow(2,len-1);
+    	int k;
+    	
+    	
+        return 0;
+    }
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int nums[]={-2, 0, 3, -5, 2, -1};
+//		System.out.println(nums);
+		RANGE_SUM_QUERY rsq=new RANGE_SUM_QUERY(nums);
+		System.out.println(rsq.list);
+	}
+
+}

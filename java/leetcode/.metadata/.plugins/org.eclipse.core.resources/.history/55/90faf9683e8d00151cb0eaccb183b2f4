@@ -1,0 +1,50 @@
+package com.simon.range_sum_query;
+
+import java.math.BigInteger;
+
+public class RANGE_SUM_QUERY {
+
+	public int[] nums;
+	public List<ArrayList<int>> list=new ArrayList<List<int>>;
+	
+	public int log_len(int len){
+		int i=0;
+		while(Math.pow(2,i)<len){
+			i++;
+		}
+		return i;
+	}
+	
+	public RANGE_SUM_QUERY(){
+		
+	}
+	
+	public RANGE_SUM_QUERY(int[] nums) {
+        //将nums的长度补全成2的平方数,方便操作
+		int i;
+		int len=nums.length;
+		int loglen=log_len(len);
+		int newlen=(int)Math.pow(2,loglen);
+		this.nums=new int[newlen];
+		for(i=0;i<len;i++)
+			this.nums[i]=nums[i];
+		
+		//初始化,计算2^0,2^1,2^2,...2^newlen的长度的部分和
+		for(i=1;i<=loglen;i++){
+			
+		}
+    }
+
+    public int sumRange(int i, int j) {
+        return 0;
+    }
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		RANGE_SUM_QUERY rsq=new RANGE_SUM_QUERY();
+		System.out.println(rsq.log_len(1025));
+	}
+
+}

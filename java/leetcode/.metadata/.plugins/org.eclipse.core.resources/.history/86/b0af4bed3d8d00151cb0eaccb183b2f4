@@ -1,0 +1,43 @@
+package com.simon.range_sum_query;
+
+import java.math.BigInteger;
+
+public class RANGE_SUM_QUERY {
+
+	public int[] nums;
+	
+	public int log_len(int len){
+		int i=0;
+		while(Math.pow(2,i)<len){
+			i++;
+		}
+		return i;
+	}
+	
+	public RANGE_SUM_QUERY(){
+		
+	}
+	
+	public RANGE_SUM_QUERY(int[] nums) {
+        //将nums的长度补全成2的平方数,方便操作
+		int len=nums.length;
+		int loglen=log_len(len);
+		int newlen=Math.pow(2,loglen);
+		this.nums=new int[len];
+		for(int i=0;i<len;i++)
+			this.nums[i]=nums[i];
+    }
+
+    public int sumRange(int i, int j) {
+        return 0;
+    }
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		RANGE_SUM_QUERY rsq=new RANGE_SUM_QUERY();
+		System.out.println(rsq.log_len(1025));
+	}
+
+}

@@ -1,0 +1,2 @@
+read 500000 bytes
+writenum=500000,errno=0

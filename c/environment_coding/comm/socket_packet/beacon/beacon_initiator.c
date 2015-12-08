@@ -246,6 +246,8 @@ void packet_process(u_char *user,const struct pcap_pkthdr *h,const u_char *bytes
      *
      *
      */
+    //在这里应该清空定时器,因为sleep(1),所以很大可能定时器在sleep中超时
+    alarm(0);
     //获取当前时间rtime,并与sdtime比较,以记录从发包到收包所消耗的时间
     if(gettimeofday(&rtime,NULL)<0){
         perror("gettimeofday error:rtime\n");
@@ -265,12 +267,13 @@ void packet_process(u_char *user,const struct pcap_pkthdr *h,const u_char *bytes
     }
     //休眠50ms,20packets/s
     //发包的时间间隔也有要考虑,多改改试试
-    usleep(50000);
+    //usleep(50000);
+    sleep(1);
     //发送下一个数据包
     seq++;
     send_beacon(seq);
     //重置定时器
-    alarm(2);
+    alarm(1);
 }
 
 int main(void)
@@ -315,7 +318,7 @@ int main(void)
         seq++;        
         send_beacon(seq);
         //设置定时器,超时时间为2秒,防止pcap_loop一直阻塞
-        alarm(2);
+        alarm(1);
         //-1就是不设置抓包数,其退出不收抓包数影响
         pcap_loop(handle,-1,packet_process,NULL);
     }

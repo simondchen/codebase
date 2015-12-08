@@ -1,0 +1,13 @@
+package com.simon.single_number;
+
+public class Single_Number {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,17 @@
+package com.simon.single_number;
+
+public class Single_Number {
+
+	
+	public int singleNumber(int[] nums) {
+        
+    }
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,49 @@
+package com.simon.single_number3;
+
+import java.math.*;
+
+public class Single_Number3 {
+
+	public int log_len(int num){
+		for(int i=0;;i++){
+			if((num>>i)==0)
+				return i;
+		}
+	}
+	
+	public int singleNumber(int[] nums) {
+//		int k=1;
+//		int off=0;
+//		int sum=0;
+//		int ret=0;
+//		
+//		do{
+//			sum=0;
+//			for(int i=0;i<nums.length;i++){
+//				//只可能为3k或3k+1
+//				sum+=(nums[i]&(k<<off))>>off;
+//			}
+//			ret|=(sum%3)<<off;
+//			off++;
+//		}while(sum!=0);
+//        return ret;
+		//首先应找出最大数,以确定外层循环次数
+		int max=nums[0];
+		for(int i=1;i<nums.length;i++){
+			if(nums[i]>max)
+				max=nums[i];
+		}
+		int len=log_len(max);
+		return len;
+    }
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Single_Number3 sn=new Single_Number3();
+		int nums[] = {4};
+		System.out.println(sn.singleNumber(nums));
+	}
+
+}

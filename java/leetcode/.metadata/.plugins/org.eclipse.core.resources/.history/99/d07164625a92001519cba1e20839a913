@@ -1,0 +1,30 @@
+package com.simon.gas_station;
+
+public class Gas_Station {
+
+	
+	/*
+	 * 看到这题,想到了算法导论里面的势能法,感觉比较像,是否可以使用
+	 * 基本思路:
+	 * 计算u[i]=gas[i]-cost[i],
+	 * 若u[i]>0,说明富余,存下到total
+	 * 若u[i]<=0,说明不够,从之前存下来的(total)中去取
+	 * 若total<0,则说明入不敷出,不可行
+	 */
+	public int canCompleteCircuit(int[] gas, int[] cost) {
+        int[] u=new int[gas.length];
+        for(int i=0;i<gas.length;i++){
+        	u[i] = gas[i] - cost[i];
+        }
+        return 0;
+    }
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

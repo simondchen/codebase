@@ -1,0 +1,135 @@
+package com.simon.gas_station;
+
+import java.util.*;
+
+//双向链表
+class ListNode{
+	int index;
+	int val;
+	ListNode prev;
+	ListNode next;
+	public ListNode(int index,int val){
+		this.index=index;
+		this.val=val;
+	}
+}
+
+public class Gas_Station {
+
+	
+	/*
+	 * 分析:
+	 * 看到这题,想到了算法导论里面的势能法,感觉比较像,是否可以使用
+	 * 基本思路:
+	 * 计算u[i]=gas[i]-cost[i],
+	 * 若u[i]>0,说明富余,存下到total
+	 * 若u[i]<=0,说明不够,从之前存下来的(total)中去取
+	 * 若total<0,则说明入不敷出,不可行
+	 */
+	
+	/*
+	 * 结果:
+	 * 超时,因为是n^n的时间复杂度,但也没要求时间复杂度,囧rz
+	 */
+	/*public int canCompleteCircuit(int[] gas, int[] cost) {
+        int[] u=new int[gas.length];
+        for(int i=0;i<gas.length;i++){
+        	u[i] = gas[i] - cost[i];
+        }
+        for(int i=0;i<gas.length;i++){
+        	int total=0;
+        	int j;
+        	for(j=0;j<gas.length;j++){
+        		total+=u[(i+j)%gas.length];
+        		//入不敷出
+        		if(total<0)
+        			break;
+        	}
+        	if(j!=gas.length)
+        		continue;
+        	else
+        		return i;
+        }
+        return -1;
+    }*/
+	
+	/*
+	 * 分析:
+	 * 其实问题的本质就是求数组的部分和,找出一个index开始绕一周大于零
+	 * 跟之前做的那个rang array sum倒有些相似
+	 * 从结果为负的点着手,采用去点连接的方法,当把所有为负段处理完后结果就出来了!!!
+	 * 因为结果是unique的,所以会很快,时间复杂度应该是O(n)的!!!
+	 */
+	
+	public int canCompleteCircuit(int[] gas, int[] cost) {
+		//初始化部分:一个链表将所有节点串起来 一个hash表用于存放所有为负的节点的引用
+		//这样即能在O(1)时间内作删除节点操作,又能在O(1)时间内找出为负的节点
+		int len=gas.length;
+		//特殊情况:没有为负的段,这种情况一定有len==1
+		if(len==1)
+			return 0;
+		HashSet<ListNode> h=new HashSet<ListNode>();
+		ListNode head=new ListNode(0,gas[0]-cost[0]);
+		ListNode tmp=head;
+		for(int i=(len-1);i>0;i--){
+			int u=gas[i]-cost[i];
+			ListNode n=new ListNode(i,u);
+			tmp.prev=n;
+			n.next=tmp;
+			tmp=n;
+			//存下来值为负的Node的索引,使用hash这样查询更快
+			if(u<0)
+				h.add(n);
+		}
+		tmp.prev=head;
+		head.next=tmp;
+		/*
+		 * 结束的情形:
+		 * a.没有为负的
+		 * b.点全部消完
+		 * 因为只有unique的结果,所以当h为空时,len应该为1
+		 */
+		//用于保存val>0退出的节点,因为这个点最后会是index(如果存在的话)
+		ListNode current;
+		while(len>1){
+			//从hashset中取一个为负的node
+			ListNode[] array=(ListNode[]) h.toArray();
+			ListNode node=array[0];
+			h.remove(node);
+			while(node.val<0){
+				//判断是否结束
+				if(node.prev==node.next)
+					break;
+				ListNode prev=node.prev;
+				if(prev.val<0){
+					//从hash表中删除该元素
+					h.remove(prev);
+				}
+				//从链表中删除node节点
+				node.next.prev=prev;
+				prev.next=node.next;
+				//更新上一个节点的值
+				prev.val=node.val+prev.val;
+				node=prev;
+			}
+			current=node;
+		}
+		
+		//len==1返回
+		if
+		
+       return 0; 
+    }
+	
+	
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Gas_Station gs=new Gas_Station();
+		int[] gas={1,2};
+		int[] cost={2,1};
+		System.out.println(gs.canCompleteCircuit(gas, cost));
+	}
+
+}

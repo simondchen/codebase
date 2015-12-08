@@ -1,0 +1,24 @@
+package com.simon.candy;
+
+public class Candy {
+
+	/*
+	 * 分析:
+	 * 这题应该是用到极大值和极小值
+	 * 找出所有极小值和极大值,比较极大值和旁边的两个极小值的距离,每个极小值从1开始取
+	 * 极大值由距离较远者决定
+	 * 极大值和极小值的判断
+	 * a[i-1]>a[i]<a[i+1]极小值
+	 * a[i-1]<a[i]>a[i+1]极大值
+	 * 要注意相等的情况!!!
+	 */
+	public int candy(int[] ratings) {
+		return 0;
+    }
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

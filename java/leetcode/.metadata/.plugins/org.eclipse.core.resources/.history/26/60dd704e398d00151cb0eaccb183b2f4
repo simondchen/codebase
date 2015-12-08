@@ -1,0 +1,13 @@
+package com.simon.range_sum_query;
+
+public class RANGE_SUM_QUERY {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

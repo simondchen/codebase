@@ -248,6 +248,13 @@ void packet_process(u_char *user,const struct pcap_pkthdr *h,const u_char *bytes
      *
      *
      */
+    //重置定时器
+    struct itimerval zero;
+    memset(&zero,0,sizeof(zero));
+    if(setitimer(ITIMER_REAL,&zero,NULL)<0){
+        perror("setitimer zero error:");
+    }
+
     //获取当前时间rtime,并与sdtime比较,以记录从发包到收包所消耗的时间
     if(gettimeofday(&rtime,NULL)<0){
         perror("gettimeofday error:rtime\n");
@@ -259,7 +266,7 @@ void packet_process(u_char *user,const struct pcap_pkthdr *h,const u_char *bytes
     printf("seq:%d,rssi:%d\n",temp_seq,rssi);
     //比较temp_seq和seq,若temp_seq小于seq,说明之前的包,超时时间设的有点短,warning
     if(temp_seq<seq){
-        printf("WARNING:original packet considered loss appear:%d,%d\n",temp_seq,seq);
+       printf("WARNING:original packet considered loss appear:%d,%d\n",temp_seq,seq);
         warning++;
         return;
     }
@@ -271,7 +278,7 @@ void packet_process(u_char *user,const struct pcap_pkthdr *h,const u_char *bytes
     if(len<0){
         perror("fprintf error\n");
     }
-    //休眠50ms,20packets/s
+    //休眠100ms,10packets/s
     //发包的时间间隔也有要考虑,多改改试试
     usleep(50000);
     //发送下一个数据包
@@ -282,7 +289,7 @@ void packet_process(u_char *user,const struct pcap_pkthdr *h,const u_char *bytes
     memset(&new,0,sizeof(new));
     new.it_value.tv_sec=0;
     //休眠0.1s,即100ms,即100000us
-    new.it_value.tv_usec=100000;
+    new.it_value.tv_usec=50000;
     if(setitimer(ITIMER_REAL,&new,NULL)<0){
         perror("setitimer error:");
         exit(-1);
@@ -318,14 +325,6 @@ int main(void)
     if(init_libpcap()<0){
         goto fail;
     }
-    //test
-    /*int i=1;
-    while(1){
-        printf("send beacon:%d\n",i++);
-        send_beacon();
-        seq++;
-        usleep(1000000);
-    }*/
     /*3.使用pcap_loop结合信号防止丢包后的一直阻塞*/
     while(1){ 
         seq++;        
@@ -340,8 +339,8 @@ int main(void)
         struct itimerval new; 
         memset(&new,0,sizeof(new));
         new.it_value.tv_sec=0;
-        //休眠0.1s,即100ms,即100000us
-        new.it_value.tv_usec=100000;
+        //休眠0.2s,即200ms,即100000us
+        new.it_value.tv_usec=50000;
         if(setitimer(ITIMER_REAL,&new,NULL)<0){
             perror("setitimer error:");
             return -1;

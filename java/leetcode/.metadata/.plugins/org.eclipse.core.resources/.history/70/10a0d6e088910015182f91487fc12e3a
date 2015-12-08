@@ -1,0 +1,29 @@
+package com.simon.single_number2;
+
+import java.util.*;
+
+public class Single_Number2 {
+
+	
+	public int[] singleNumber(int[] nums) {
+		HashSet<Integer> hs=new HashSet<Integer>();
+		for(int i=0;i<nums.length;i++){
+			if(hs.contains(nums[i])){
+				hs.remove(i);
+			}else{
+				hs.add(i);
+			}
+		}
+		
+		int len=hs.size();
+		int[] ret=new int[len];
+		Iterator<Integer> it=hs.iterator();
+	}
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

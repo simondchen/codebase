@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<workbench progressCount="21" version="2.0">
+<workbench progressCount="20" version="2.0">
 <workbenchAdvisor/>
-<window height="730" width="1301" x="65" y="24">
+<window height="731" width="1366" x="0" y="18">
 <fastViewData fastViewLocation="1024"/>
 <perspectiveBar>
 <itemSize x="160"/>
 </perspectiveBar>
 <coolbarLayout>
 <coolItem id="group.file" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="144" y="30"/>
+<coolItem id="org.eclipse.ui.workbench.file" itemType="typeToolBarContribution" x="132" y="26"/>
 <coolItem id="additions" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.debug.ui.launch.toolbar" itemType="typeToolBarContribution" x="-1" y="-1"/>
-<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="156" y="30"/>
-<coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="40" y="30"/>
-<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
-<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="88" y="30"/>
-<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="124" y="30"/>
+<coolItem id="org.eclipse.debug.ui.launchActionSet" itemType="typeToolBarContribution" x="142" y="26"/>
+<coolItem id="org.eclipse.debug.ui.main.toolbar" itemType="typeToolBarContribution" x="36" y="26"/>
+<coolItem id="org.eclipse.jdt.ui.JavaElementCreationActionSet" itemType="typeToolBarContribution" x="80" y="26"/>
+<coolItem id="org.eclipse.search.searchActionSet" itemType="typeToolBarContribution" x="80" y="26"/>
+<coolItem id="org.eclipse.ui.edit.text.actionSet.presentation" itemType="typeToolBarContribution" x="114" y="26"/>
 <coolItem id="group.nav" itemType="typeGroupMarker"/>
-<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="232" y="30"/>
+<coolItem id="org.eclipse.ui.workbench.navigate" itemType="typeToolBarContribution" x="212" y="26"/>
 <coolItem id="group.editor" itemType="typeGroupMarker"/>
 <coolItem id="org.eclipse.jdt.ui.CompilationUnitEditor" itemType="typeToolBarContribution" x="-1" y="-1"/>
 <coolItem id="group.help" itemType="typeGroupMarker"/>
@@ -30,26 +30,54 @@
 <folder appearance="1" expanded="2">
 <presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
 <part id="0"/>
-<part id="1"/>
 </presentation>
 </folder>
 </info>
 </editorArea>
-<editor id="org.eclipse.jdt.ui.CompilationUnitEditor" name="LIS.java" partName="LIS.java" path="/home/simon/codebase/java/leetcode/algorithm/src/com/simon/LIS_300/LIS.java" title="LIS.java" tooltip="algorithm/src/com/simon/LIS_300/LIS.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/algorithm/src/com/simon/LIS_300/LIS.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="970" selectionTopPixel="483"/>
-</editor>
-<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BULLS_AND_COWS.java" partName="BULLS_AND_COWS.java" path="/home/simon/codebase/java/leetcode/algorithm/src/com/simon/bulls_and_cows/BULLS_AND_COWS.java" title="BULLS_AND_COWS.java" tooltip="algorithm/src/com/simon/bulls_and_cows/BULLS_AND_COWS.java" workbook="DefaultEditorWorkbook">
-<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/algorithm/src/com/simon/bulls_and_cows/BULLS_AND_COWS.java"/>
-<editorState selectionHorizontalPixel="0" selectionLength="0" selectionOffset="1160" selectionTopPixel="901"/>
+<editor activePart="true" focus="true" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Gas_Station.java" partName="Gas_Station.java" path="/home/simon/codebase/java/leetcode/algorithm/src/com/simon/gas_station/Gas_Station.java" title="Gas_Station.java" tooltip="algorithm/src/com/simon/gas_station/Gas_Station.java" workbook="DefaultEditorWorkbook">
+<input factoryID="org.eclipse.ui.part.FileEditorInputFactory" path="/algorithm/src/com/simon/gas_station/Gas_Station.java"/>
+<editorState selectionHorizontalPixel="0" selectionLength="61" selectionOffset="1358" selectionTopPixel="1243"/>
 </editor>
 </editors>
 <views>
+<view id="org.eclipse.cdt.visualizer.view" partName="Visualizer"/>
+<view id="org.eclipse.debug.ui.DebugView" partName="Debug">
+<viewState/>
+</view>
+<view id="org.eclipse.cdt.debug.ui.executablesView" partName="Executables"/>
+<view id="org.eclipse.ui.views.TaskList" partName="Tasks">
+<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.completionField" categoryGroup="none" markerContentGenerator="org.eclipse.ui.ide.tasksGenerator" partName="Tasks">
+<columnWidths org.eclipse.ui.ide.completionField="40" org.eclipse.ui.ide.descriptionField="350" org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="308" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.priorityField="35" org.eclipse.ui.ide.resourceField="105"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.completionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.priorityField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.descriptionField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
+<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
+</viewState>
+</view>
+<view id="org.eclipse.debug.ui.VariableView" partName="Variables">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.BreakpointView" partName="Breakpoints">
+<viewState/>
+</view>
+<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<viewState/>
+</view>
+<view id="org.eclipse.debug.ui.ExpressionView" partName="Expressions">
+<viewState/>
+</view>
 <view id="org.eclipse.ui.navigator.ProjectExplorer" partName="Project Explorer">
 <viewState CommonNavigator.LINKING_ENABLED="0" org.eclipse.cdt.ui.cview.groupincludes="false" org.eclipse.cdt.ui.cview.groupmacros="false" org.eclipse.cdt.ui.editor.CUChildren="true" org.eclipse.ui.navigator.resources.workingSets.showTopLevelWorkingSets="0"/>
 </view>
 <view id="org.eclipse.ui.views.ProblemView" partName="Problems">
 <viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.severityAndDescriptionField" categoryGroup="org.eclipse.ui.ide.severity" markerContentGenerator="org.eclipse.ui.ide.problemsGenerator" partName="Problems">
+<expanded>
+<category IMemento.internal.id="Errors"/>
+<category IMemento.internal.id="Warnings (9 items)"/>
+</expanded>
 <columnWidths org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="361" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.resourceField="105" org.eclipse.ui.ide.severityAndDescriptionField="350"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.severityAndDescriptionField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
@@ -57,9 +85,6 @@
 <visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
 <visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
 </viewState>
-</view>
-<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
-<viewState/>
 </view>
 <view id="org.eclipse.jdt.ui.PackageExplorer" partName="Package Explorer">
 <viewState group_libraries="1" layout="2" linkWithEditor="0" rootMode="1" workingSetName="">
@@ -90,25 +115,13 @@
 </customFilters>
 </viewState>
 </view>
-<view id="org.eclipse.ui.views.TaskList" partName="Tasks">
-<viewState PRIMARY_SORT_FIELD="org.eclipse.ui.ide.completionField" categoryGroup="none" markerContentGenerator="org.eclipse.ui.ide.tasksGenerator" partName="Tasks">
-<columnWidths org.eclipse.ui.ide.completionField="40" org.eclipse.ui.ide.descriptionField="350" org.eclipse.ui.ide.locationField="105" org.eclipse.ui.ide.markerType="308" org.eclipse.ui.ide.pathField="140" org.eclipse.ui.ide.priorityField="35" org.eclipse.ui.ide.resourceField="105"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.completionField"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.priorityField"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.descriptionField"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.resourceField"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.pathField"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.locationField"/>
-<visible IMemento.internal.id="org.eclipse.ui.ide.markerType"/>
-</viewState>
-</view>
-<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
-<view id="org.eclipse.ui.views.ContentOutline" partName="Outline">
+<view id="org.eclipse.ui.console.ConsoleView" partName="Console">
 <viewState/>
 </view>
+<view id="org.eclipse.jdt.ui.SourceView" partName="Declaration"/>
 <view id="org.eclipse.jdt.ui.JavadocView" partName="Javadoc"/>
 </views>
-<perspectives activePart="org.eclipse.jdt.ui.PackageExplorer" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
+<perspectives activePart="org.eclipse.jdt.ui.CompilationUnitEditor" activePerspective="org.eclipse.jdt.ui.JavaPerspective">
 <perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
 <descriptor class="org.eclipse.ui.internal.ide.application.ResourcePerspective" id="org.eclipse.ui.resourcePerspective" label="Resource"/>
 <alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
@@ -253,7 +266,7 @@
 </folder>
 </info>
 <info part="org.eclipse.ui.editorss" ratio="0.21021466" ratioLeft="284" ratioRight="1067" relationship="2" relative="left"/>
-<info folder="true" part="bottom" ratio="0.79585326" ratioLeft="499" ratioRight="128" relationship="4" relative="org.eclipse.ui.editorss">
+<info folder="true" part="bottom" ratio="0.76714516" ratioLeft="481" ratioRight="146" relationship="4" relative="org.eclipse.ui.editorss">
 <folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
 <page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
 <page content="org.eclipse.jdt.ui.JavadocView" label="Javadoc"/>
@@ -283,162 +296,286 @@
 </mainWindow>
 </layout>
 </perspective>
+<perspective editorAreaTrimState="2" editorAreaVisible="1" fixed="0" version="0.016">
+<descriptor class="org.eclipse.debug.internal.ui.DebugPerspectiveFactory" id="org.eclipse.debug.ui.DebugPerspective" label="Debug"/>
+<alwaysOnActionSet id="org.eclipse.ui.cheatsheets.actionSet"/>
+<alwaysOnActionSet id="org.eclipse.search.searchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.annotationNavigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.navigation"/>
+<alwaysOnActionSet id="org.eclipse.ui.edit.text.actionSet.convertLineDelimitersTo"/>
+<alwaysOnActionSet id="org.eclipse.ui.externaltools.ExternalToolsSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.keyBindings"/>
+<alwaysOnActionSet id="org.eclipse.ui.actionSet.openFiles"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.launchActionSet"/>
+<alwaysOnActionSet id="org.eclipse.cdt.debug.ui.debugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.ui.NavigateActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.breakpointActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.debug.ui.JDTDebugActionSet"/>
+<alwaysOnActionSet id="org.eclipse.jdt.ui.JavaActionSet"/>
+<alwaysOnActionSet id="org.eclipse.debug.ui.debugActionSet"/>
+<show_view_action id="org.eclipse.debug.ui.DebugView"/>
+<show_view_action id="org.eclipse.debug.ui.VariableView"/>
+<show_view_action id="org.eclipse.debug.ui.BreakpointView"/>
+<show_view_action id="org.eclipse.debug.ui.ExpressionView"/>
+<show_view_action id="org.eclipse.ui.views.ContentOutline"/>
+<show_view_action id="org.eclipse.ui.console.ConsoleView"/>
+<show_view_action id="org.eclipse.ui.views.TaskList"/>
+<show_view_action id="org.eclipse.ant.ui.views.AntView"/>
+<show_view_action id="org.eclipse.cdt.debug.ui.SignalsView"/>
+<show_view_action id="org.eclipse.debug.ui.RegisterView"/>
+<show_view_action id="org.eclipse.debug.ui.ModuleView"/>
+<show_view_action id="org.eclipse.debug.ui.MemoryView"/>
+<show_view_action id="org.eclipse.ui.views.ProblemView"/>
+<show_view_action id="org.eclipse.cdt.debug.ui.executablesView"/>
+<show_view_action id="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser"/>
+<show_view_action id="org.eclipse.cdt.dsf.gdb.ui.tracecontrol.view"/>
+<show_view_action id="org.eclipse.cdt.dsf.debug.ui.disassembly.view"/>
+<show_view_action id="org.eclipse.cdt.visualizer.view"/>
+<show_view_action id="org.eclipse.pde.runtime.LogView"/>
+<show_view_action id="org.eclipse.jdt.debug.ui.DisplayView"/>
+<perspective_action id="org.eclipse.cdt.ui.CPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaPerspective"/>
+<perspective_action id="org.eclipse.jdt.ui.JavaBrowsingPerspective"/>
+<hide_toolbar_item_id id="org.eclipse.debug.ui.commands.RunToLine"/>
+<hide_toolbar_item_id id="org.eclipse.jdt.ui.actions.OpenProjectWizard"/>
+<hide_toolbar_item_id id="org.eclipse.ui.edit.text.toggleShowSelectedElementOnly"/>
+<view id="org.eclipse.ui.console.ConsoleView"/>
+<view id="org.eclipse.ui.views.TaskList"/>
+<view id="org.eclipse.ui.views.ProblemView"/>
+<view id="org.eclipse.cdt.debug.ui.executablesView"/>
+<view id="org.eclipse.debug.ui.DebugView"/>
+<view id="org.eclipse.debug.ui.VariableView"/>
+<view id="org.eclipse.debug.ui.BreakpointView"/>
+<view id="org.eclipse.debug.ui.ExpressionView"/>
+<view id="org.eclipse.ui.views.ContentOutline"/>
+<view id="org.eclipse.cdt.visualizer.view"/>
+<fastViewBars/>
+<layout>
+<mainWindow>
+<info folder="true" part="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.debug.ui.DebugView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.DebugView" label="Debug"/>
+<page content="org.eclipse.ui.views.ResourceNavigator" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.PackageExplorer" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.ui.TypeHierarchy" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="stickyFolderRight" ratio="0.74963075" ratioLeft="1015" ratioRight="339" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder appearance="2" expanded="2">
+<page content="org.eclipse.help.ui.HelpView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.internal.introview" label="LabelNotFound"/>
+<page content="org.eclipse.ui.cheatsheets.views.CheatSheetView" label="LabelNotFound"/>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ConsoleFolderView" ratio="0.74920636" ratioLeft="472" ratioRight="158" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.ui.console.ConsoleView" appearance="2" expanded="2">
+<page content="org.eclipse.ui.console.ConsoleView" label="Console"/>
+<page content="org.eclipse.ui.views.TaskList" label="Tasks"/>
+<page content="org.eclipse.ui.views.ProblemView" label="Problems"/>
+<page content="org.eclipse.cdt.debug.ui.executablesView" label="Executables"/>
+<page content="org.eclipse.ui.views.BookmarkView" label="LabelNotFound"/>
+<page content="org.eclipse.ui.views.PropertySheet" label="LabelNotFound"/>
+<page content="org.eclipse.cdt.debug.ui.memory.memorybrowser.MemoryBrowser" label="LabelNotFound"/>
+<page content="org.eclipse.jdt.debug.ui.DisplayView" label="LabelNotFound"/>
+<page content="org.eclipse.search.SearchResultView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+<part id="3"/>
+</presentation>
+</folder>
+</info>
+<info part="org.eclipse.ui.editorss" ratio="0.44915253" ratioLeft="212" ratioRight="260" relationship="4" relative="org.eclipse.debug.internal.ui.NavigatorFolderView"/>
+<info folder="true" part="org.eclipse.debug.internal.ui.OutlineFolderView" ratio="0.74963075" ratioLeft="1015" ratioRight="339" relationship="2" relative="org.eclipse.ui.editorss">
+<folder activePageID="org.eclipse.ui.views.ContentOutline" appearance="2" expanded="2">
+<page content="org.eclipse.ui.views.ContentOutline" label="Outline"/>
+<page content="org.eclipse.cdt.visualizer.view" label="Visualizer"/>
+<page content="org.eclipse.ant.ui.views.AntView" label="LabelNotFound"/>
+<page content="org.eclipse.cdt.dsf.gdb.ui.tracecontrol.view" label="LabelNotFound"/>
+<page content="org.eclipse.cdt.dsf.debug.ui.disassembly.view" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+</presentation>
+</folder>
+</info>
+<info folder="true" part="org.eclipse.debug.internal.ui.ToolsFolderView" ratio="0.5" ratioLeft="677" ratioRight="677" relationship="2" relative="org.eclipse.debug.internal.ui.NavigatorFolderView">
+<folder activePageID="org.eclipse.debug.ui.VariableView" appearance="2" expanded="2">
+<page content="org.eclipse.debug.ui.VariableView" label="Variables"/>
+<page content="org.eclipse.debug.ui.BreakpointView" label="Breakpoints"/>
+<page content="org.eclipse.debug.ui.ExpressionView" label="Expressions"/>
+<page content="org.eclipse.debug.ui.RegisterView" label="LabelNotFound"/>
+<page content="org.eclipse.cdt.debug.ui.SignalsView" label="LabelNotFound"/>
+<page content="org.eclipse.debug.ui.ModuleView" label="LabelNotFound"/>
+<presentation id="org.eclipse.ui.presentations.WorkbenchPresentationFactory">
+<part id="0"/>
+<part id="1"/>
+<part id="2"/>
+</presentation>
+</folder>
+</info>
+</mainWindow>
+</layout>
+</perspective>
 </perspectives>
 <workingSets/>
 <navigationHistory>
 <editors>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/algorithm/src/com/simon/LIS_300/LIS.java"/>
-<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/algorithm/src/com/simon/bulls_and_cows/BULLS_AND_COWS.java"/>
+<editor factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" path="/algorithm/src/com/simon/gas_station/Gas_Station.java"/>
 </editors>
-<item historyLabel="LIS.java" index="0">
-<position info="not_deleted" x="781" y="20"/>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1467" y="0"/>
 </item>
-<item historyLabel="LIS.java" index="0">
-<position info="not_deleted" x="778" y="0"/>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1515" y="0"/>
 </item>
-<item historyLabel="LIS.java" index="0">
-<position info="not_deleted" x="1115" y="0"/>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1559" y="0"/>
 </item>
-<item historyLabel="LIS.java" index="0">
-<position info="not_deleted" x="1344" y="0"/>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1582" y="0"/>
 </item>
-<item historyLabel="LIS.java" index="0">
-<position info="not_deleted" x="1351" y="0"/>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1598" y="0"/>
 </item>
-<item historyLabel="LIS.java" index="0">
-<position info="not_deleted" x="632" y="0"/>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1628" y="0"/>
 </item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="0" y="0"/>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1653" y="0"/>
 </item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1686" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1701" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1716" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1759" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1598" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1788" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1805" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1948" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1988" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2029" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2068" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2096" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2115" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2189" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2213" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2469" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1988" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2029" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2068" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
 <position/>
 </item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1821" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2719" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1304" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1356" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1420" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1467" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1515" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1559" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1582" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1598" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1628" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1653" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1686" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1701" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1716" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1759" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1598" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1788" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1805" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="1821" y="0"/>
+</item>
+<item historyLabel="Gas_Station.java" index="0">
 <position/>
 </item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
+<item historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2719" y="0"/>
 </item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="1125" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="251" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="409" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="510" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="198" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="228" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="230" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="177" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="595" y="4"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="1125" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="862" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="748" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="767" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="776" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="795" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="902" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="619" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="652" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="831" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="860" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="936" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="990" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="1122" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="1038" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="1122" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="1323" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="1324" y="0"/>
-</item>
-<item historyLabel="BULLS_AND_COWS.java" index="1">
-<position info="not_deleted" x="608" y="0"/>
-</item>
-<item active="true" historyLabel="BULLS_AND_COWS.java" index="1">
-<position/>
+<item active="true" historyLabel="Gas_Station.java" index="0">
+<position info="not_deleted" x="2775" y="0"/>
 </item>
 </navigationHistory>
 <input factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/" type="8"/>
@@ -446,6 +583,13 @@
 <workbenchWindowAdvisor/>
 <actionBarAdvisor/>
 <trimLayout>
+<trimArea IMemento.internal.id="16384">
+<trimItem IMemento.internal.id="left"/>
+</trimArea>
+<trimArea IMemento.internal.id="131072">
+<trimItem IMemento.internal.id="bottom"/>
+<trimItem IMemento.internal.id="right"/>
+</trimArea>
 <trimArea IMemento.internal.id="128">
 <trimItem IMemento.internal.id="org.eclipse.ui.internal.WorkbenchWindow.topBar"/>
 </trimArea>
@@ -457,6 +601,24 @@
 </trimLayout>
 </window>
 <mruList>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Gas_Station.java" tooltip="algorithm/src/com/simon/gas_station/Gas_Station.java">
+<persistable path="/algorithm/src/com/simon/gas_station/Gas_Station.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Single_Number3.java" tooltip="algorithm/src/com/simon/single_number3/Single_Number3.java">
+<persistable path="/algorithm/src/com/simon/single_number3/Single_Number3.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Single_Number2.java" tooltip="algorithm/src/com/simon/single_number2/Single_Number2.java">
+<persistable path="/algorithm/src/com/simon/single_number2/Single_Number2.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="Single_Number.java" tooltip="algorithm/src/com/simon/single_number/Single_Number.java">
+<persistable path="/algorithm/src/com/simon/single_number/Single_Number.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="ListMerge.java" tooltip="algorithm/src/com/simon/list_merge/ListMerge.java">
+<persistable path="/algorithm/src/com/simon/list_merge/ListMerge.java"/>
+</file>
+<file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="RANGE_SUM_QUERY.java" tooltip="algorithm/src/com/simon/range_sum_query/RANGE_SUM_QUERY.java">
+<persistable path="/algorithm/src/com/simon/range_sum_query/RANGE_SUM_QUERY.java"/>
+</file>
 <file factoryID="org.eclipse.ui.part.FileEditorInputFactory" id="org.eclipse.jdt.ui.CompilationUnitEditor" name="BULLS_AND_COWS.java" tooltip="algorithm/src/com/simon/bulls_and_cows/BULLS_AND_COWS.java">
 <persistable path="/algorithm/src/com/simon/bulls_and_cows/BULLS_AND_COWS.java"/>
 </file>

@@ -7,14 +7,14 @@
 function draw_seq()
     data=load('seq_initiator')
     data=data'
-    %x=1:size(data,2)
-    x=250:350
+    x=201:size(data,2)
+    x=200:307
     y1=data(x)
     plot(x,y1,'-o')
     data=load('seq_responser')
     data=data'
-    %x=1:size(data,2)
-    x=250:350
+    x=201:size(data,2)
+    x=200:307
     y2=data(x)
     hold on
     plot(x,y2,'-o')

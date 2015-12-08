@@ -1,0 +1,20 @@
+package com.simon.single_number2;
+
+import java.util.*;
+
+public class Single_Number2 {
+
+	
+	public int[] singleNumber(int[] nums) {
+		HashSet<Integer> hs=new HashSet<Integer>();
+		
+        return null;
+    }
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
